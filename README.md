@@ -80,20 +80,20 @@ The main objectives of this SQL project are to:
 
 ## 🟢 Basic SQL Queries
 
-### 1️⃣ Total number of orders placed
+### 1️. Total number of orders placed
 ```sql
 SELECT COUNT(DISTINCT order_id) AS total_orders
 FROM orders;
 ```
 
-### 2️⃣ Total revenue generated from pizza sales
+### 2️. Total revenue generated from pizza sales
 ```sql
 select round(sum(order_details.quantity * pizzas.price)) as total_revenue
 from order_details, pizzas
 where order_details.pizza_id = pizzas.pizza_id;
 ```
 
-### 3️⃣ Highest-priced pizza
+### 3️. Highest-priced pizza
 ```sql
 SELECT pizza_id, price
 FROM pizzas
@@ -101,7 +101,7 @@ ORDER BY price DESC
 LIMIT 1;
 ```
 
-### 4️⃣ Most common pizza size ordered
+### 4️. Most common pizza size ordered
 ```sql
 SELECT p.size, COUNT(*) AS order_count
 FROM order_details od
@@ -111,7 +111,7 @@ ORDER BY order_count DESC
 LIMIT 1;
 ```
 
-### 5️⃣ Top 5 most ordered pizza types
+### 5️. Top 5 most ordered pizza types
 ```sql
 SELECT pt.name, SUM(od.quantity) AS total_quantity
 FROM order_details od
@@ -126,7 +126,7 @@ LIMIT 5;
 
 ## 🟡 Intermediate SQL Queries
 
-### 6️⃣ Total quantity of each pizza category ordered
+### 6️. Total quantity of each pizza category ordered
 ```sql
 SELECT pt.category, SUM(od.quantity) AS total_quantity
 FROM order_details od
@@ -136,7 +136,7 @@ GROUP BY pt.category
 ORDER BY total_quantity DESC;
 ```
 
-### 7️⃣ Distribution of orders by hour of the day
+### 7️. Distribution of orders by hour of the day
 ```sql
 SELECT EXTRACT(HOUR FROM time) AS order_hour,
        COUNT(order_id) AS total_orders
@@ -145,7 +145,7 @@ GROUP BY order_hour
 ORDER BY order_hour;
 ```
 
-### 8️⃣ Category-wise distribution of pizzas
+### 8️. Category-wise distribution of pizzas
 ```sql
 SELECT pt.category, COUNT(p.pizza_id) AS total_pizzas
 FROM pizzas p
@@ -153,14 +153,14 @@ JOIN pizza_types pt ON p.pizza_type_id = pt.pizza_type_id
 GROUP BY pt.category;
 ```
 
-### 9️⃣ Average number of pizzas ordered per day
+### 9️. Average number of pizzas ordered per day
 ```sql
 SELECT ROUND(SUM(od.quantity) / COUNT(DISTINCT o.date), 2) AS avg_pizzas_per_day
 FROM order_details od
 JOIN orders o ON od.order_id = o.order_id;
 ```
 
-### 🔟 Top 3 most ordered pizza types based on revenue
+### 10. Top 3 most ordered pizza types based on revenue
 ```sql
 SELECT pt.name, ROUND(SUM(od.quantity * p.price), 2) AS revenue
 FROM order_details od
@@ -175,7 +175,7 @@ LIMIT 3;
 
 ## 🔴 Advanced SQL Queries
 
-### 1️⃣1️⃣ Percentage contribution of each pizza category to total revenue
+### 11. Percentage contribution of each pizza category to total revenue
 ```sql
 SELECT pt.category,
        ROUND(SUM(od.quantity * p.price) * 100.0 /
@@ -189,7 +189,7 @@ GROUP BY pt.category
 ORDER BY percent_contribution DESC;
 ```
 
-### 1️⃣2️⃣ Cumulative revenue generated over time
+### 12. Cumulative revenue generated over time
 ```sql
 SELECT o.date,
        SUM(SUM(od.quantity * p.price)) OVER (ORDER BY o.date) AS cumulative_revenue
@@ -200,7 +200,7 @@ GROUP BY o.date
 ORDER BY o.date;
 ```
 
-### 1️⃣3️⃣ Top 3 most ordered pizza types by revenue for each category
+### 1️3. Top 3 most ordered pizza types by revenue for each category
 ```sql
 SELECT category, name, revenue
 FROM (
@@ -232,7 +232,7 @@ WHERE rank <= 3;
 
 ## 🧾 Tools Used
 
-- PostgreSQL / MySQL / SQLite – Query Execution  
+- PostgreSQL – Query Execution  
 - Excel / CSV – Data Source  
 - SQL – Data Cleaning, Joins, Aggregations  
 - GitHub – Project Documentation

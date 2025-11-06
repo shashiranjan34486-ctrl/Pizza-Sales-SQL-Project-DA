@@ -302,16 +302,5 @@ Table orders {
 
 ---
 
-## 📎 Repository & Files
-Place the following files in the repo root:
-- `README.md` (this file)  
-- `orders.csv` / `orders.xlsx`  
-- `order_details.csv` / `order_details.xlsx`  
-- `pizzas.csv` / `pizzas.xlsx`  
-- `pizza_types.csv` / `pizza_types.xlsx`  
-- `sql/` folder with SQL scripts for Basic, Intermediate, and Advanced queries  
-- `images/schema.png` (optional ERD export)
-
-
 
 
